@@ -1,9 +1,10 @@
+# Author: RedNekoder
 #!/bin/bash
 FORMAT="png"
-NAME="Screenshot from $(date "+%d-%m-%y %H:%M:%S")"
+NAME="Screenshot_from_$(date "+%d-%m-%y %H:%M:%S")"
 PICTPATH="$HOME/Pictures/Screenshots/"
 OUTPUT="$NAME.$FORMAT"
-Ver="0.1"
+Ver="0.2"
 help=0
 
 RED='\033[0;31m'
@@ -29,7 +30,7 @@ case $1 in
   ''| '-A' ) grim -g "$(slurp -d)" "${PICTPATH}${OUTPUT}" ;;
   '-W' ) grim -g "${FOCUSED}" "${PICTPATH}${OUTPUT}" ;;
   * | '-h') help=1
-  			    echo -e "Hyprland screenshot tool ver${Ver} by ${RED}Red${PURPLE}Nekod${BLUE}err${NORMAL}"
+  	echo -e "Hyprland screenshot tool ver${Ver} by ${RED}Red${PURPLE}Nekod${BLUE}err${NORMAL}"
             echo ""
             echo -e "A screenshot of the selected area will be taken and it will be named ${BLUE}'${OUTPUT}'${NORMAL} and saved to ${PURPLE}'${PICTPATH}'${NORMAL}."
             echo ""
@@ -42,6 +43,7 @@ esac
 if [ "$help" = 0 ];
 then
 	wl-copy -t image/"${FORMAT}" < "${PICTPATH}${OUTPUT}"
-	notify-send "Screenshot" "File saved as <i>'$OUTPUT'</i> and copied to the clipboard." -i "${PICTPATH}${OUTPUT}"
+# 	notify-send "Screenshot" "File saved as <i>'$OUTPUT'</i> and copied to the clipboard." -i "${PICTPATH}${OUTPUT}"
+	gdbus call --session --dest=org.freedesktop.Notifications --object-path=/org/freedesktop/Notifications --method=org.freedesktop.Notifications.Notify "" 0 "file://${PICTPATH}${OUTPUT}" 'Screenshot' "File saved and copied to clipboard." '[]' '{"urgency": <1>}' 5000
 fi
 
