@@ -1,4 +1,3 @@
-# Author: RedNekoder
 #!/bin/bash
 FORMAT="png"
 NAME="Screenshot_from_$(date "+%d-%m-%y %H:%M:%S")"
