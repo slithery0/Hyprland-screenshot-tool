@@ -26,18 +26,18 @@ function list_geometry () {
 FOCUSED=`list_geometry focused`
 
 case $1 in
-  '-S' ) grim "${PICTPATH}${OUTPUT}" ;;
-  ''| '-A' ) grim -g "$(slurp -d)" "${PICTPATH}${OUTPUT}" ;;
-  '-W' ) grim -g "${FOCUSED}" "${PICTPATH}${OUTPUT}" ;;
+  '-e' ) grim "${PICTPATH}${OUTPUT}" ;;
+  ''| '-s' ) grim -g "$(slurp -d)" "${PICTPATH}${OUTPUT}" ;;
+  '-f' ) grim -g "${FOCUSED}" "${PICTPATH}${OUTPUT}" ;;
   * | '-h') help=1
   	echo -e "Hyprland screenshot tool ver${Ver} by ${RED}Red${PURPLE}Nekod${BLUE}err${NORMAL}"
             echo ""
             echo -e "A screenshot of the selected area will be taken and it will be named ${BLUE}'${OUTPUT}'${NORMAL} and saved to ${PURPLE}'${PICTPATH}'${NORMAL}."
             echo ""
             echo ""
-            echo "'-S' or empty to take a screenshot of the entire screen."
-            echo "'-A' to take a screenshot of the selected area."
-            echo "'-W' to take a screenshot of the focused window."
+            echo "'-e' or empty to take a screenshot of the entire screen."
+            echo "'-s' to take a screenshot of the selected area."
+            echo "'-f' to take a screenshot of the focused window."
             echo "'-h'available arguments." ;;
 esac
 if [ "$help" = 0 ];
